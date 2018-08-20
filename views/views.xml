@@ -50,7 +50,7 @@
                     <tree editable="bottom">
                       <field name = 'name' />
                       <field name = 'email' />
-                      <field name = 'empresa' />
+                      <field name = 'company' />
                     </tree>
                   </field>
               </page>
