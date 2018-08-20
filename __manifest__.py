@@ -6,14 +6,21 @@
         Personalizaciones para Belenes""",
 
     'description': """
-         - Add checkbox to validate if the user authorize sales
+         - Add checkbox to validate if the user authorize purchase
+         - Add model Purchase Type
+         - Add model Purchase Type Users (Sublist)
+         - Add field Purchase type to purchase order
+         - Add confirmation to purchase order
+         - Add submenu on configuration purchase menu
+         - Add submenu on purchase menu
+         
     """,
 
     'author': "Pablo Osorio",
     'website': "https://xmarts.com",
 
     'category': 'Uncategorized',
-    'version': '0.1',
+    'version': '0.2',
 
     'depends': ['base','purchase'],
 
