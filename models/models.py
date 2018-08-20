@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions,_
 from odoo.exceptions import AccessError, UserError, RedirectWarning, ValidationError, Warning
+from odoo.tools.misc import formatLang
+from odoo.addons.base.res.res_partner import WARNING_MESSAGE, WARNING_HELP
 
 # class belenes(models.Model):
 #     _name = 'belenes.belenes'
@@ -32,7 +34,7 @@ class TrovaEmployee(models.Model):
 
 	name = fields.Many2one('res.users',string='Usuario')
 	email = fields.Char(string='E-mail', related='name.login',readonly=True)
-	empresa = fields.Many2one('res.partner',string='Empresa', related='name.partner_id',readonly=True)	
+	company = fields.Many2one('res.partner',string='Empresa', related='name.partner_id',readonly=True)
 	type_id = fields.Many2one('purchase.order.types', string='Campo Many2one', required=True, ondelete='cascade',index=True, copy=False)
 
 class validPurchase(models.Model):
@@ -41,3 +43,14 @@ class validPurchase(models.Model):
 
 	valid_purchase = fields.Boolean(string='Validar Compra')
 	purchase_type = fields.Many2one('purchase.order.types',string='Tipo de Compra')
+
+	@api.one
+	@api.multi
+	def button_confirm(self):
+		if self.valid_purchase == False:
+			raise exceptions.ValidationError('Necesita confirmación del pedido')
+
+		res = super(validPurchase, self).button_confirm()
+
+		return res
+
