@@ -8,7 +8,6 @@
     'description': """
          - Add checkbox to validate if the user authorize purchase
          - Add model Purchase Type
-         - Add model Purchase Type Users (Sublist)
          - Add field Purchase type to purchase order
          - Add confirmation to purchase order
          - Add submenu on configuration purchase menu
