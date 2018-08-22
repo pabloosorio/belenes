@@ -26,16 +26,17 @@ class purchaseTypes(models.Model):
 	_name = 'purchase.order.types'
 
 	name = fields.Char(string='Tipo de compra',required=True)
-	users = fields.One2many('purchase.order.types.users', 'type_id', string='Option lines')
+	#users = fields.One2many('purchase.order.types.users', 'type_id', string='Option lines')
+	userss = fields.Many2many('res.users', string='Usuarios')
 
-class TrovaEmployee(models.Model):
-	_name = "purchase.order.types.users"
-	_description = "usuarios que autorizan la compra"
-
-	name = fields.Many2one('res.users',string='Usuario')
-	email = fields.Char(string='E-mail', related='name.login',readonly=True)
-	company = fields.Many2one('res.partner',string='Empresa', related='name.partner_id',readonly=True)
-	type_id = fields.Many2one('purchase.order.types', string='Campo Many2one', required=True, ondelete='cascade',index=True, copy=False)
+#class TrovaEmployee(models.Model):
+#	_name = "purchase.order.types.users"
+#	_description = "usuarios que autorizan la compra"
+#
+#	name = fields.Many2one('res.users',string='Usuario')
+#	email = fields.Char(string='E-mail', related='name.login',readonly=True)
+#	company = fields.Many2one('res.partner',string='Empresa', related='name.partner_id',readonly=True)
+#	type_id = fields.Many2one('purchase.order.types', string='Campo Many2one', required=True, ondelete='cascade',index=True, copy=False)
 
 class validPurchase(models.Model):
 	_name = 'purchase.order'
@@ -53,4 +54,3 @@ class validPurchase(models.Model):
 		res = super(validPurchase, self).button_confirm()
 
 		return res
-
