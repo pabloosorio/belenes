@@ -37,8 +37,8 @@ class PurchaseOrder(models.Model):
 
     valid_purchase = fields.Boolean(string='Validar Compra')
     purchase_type = fields.Many2one('purchase.order.types', string='Tipo de Compra')
-    user_valid = fields.Many2one('res.users', string='Valido')
-    id_active = fields.Boolean(default=False, compute='rev_users')
+    #user_valid = fields.Many2one('res.users', string='Valido')
+    id_active = fields.Boolean(default=False, compute='rev_users',string="Puede validar")
 
     @api.one
     def rev_users(self):

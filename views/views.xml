@@ -69,7 +69,8 @@
       <field name="res_model">purchase.order</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
-      <field name="domain">[('valid_purchase', '=', False),('state','in',['draft','sent','to approve']),('id_active', '=', False)]</field>
+      <!--<field name="context">{'group_by':'id_active'}</field>-->
+      <field name="domain">[('valid_purchase', '=', False),('state','in',['draft','sent','to approve'])]</field>
     </record>
 
     <menuitem name="Compras por Validar" id="belenes.menu_purchase_to_valide" parent="purchase.menu_procurement_management"
