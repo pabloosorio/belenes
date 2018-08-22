@@ -18,8 +18,9 @@
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='date_order']" position="after">
+                <field name="id_active" invisible="1"/>
                 <field name="purchase_type"/>
-                <field name="valid_purchase" attrs="{'invisible': [('uid','not in',purchase_type.userss)]}"/>
+                <field name="valid_purchase" attrs="{'readonly': [('id_active','=',False)]}"/>
             </xpath>
         </field>
     </record>
@@ -68,7 +69,7 @@
       <field name="res_model">purchase.order</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
-      <field name="domain">[('valid_purchase', '=', False),('state','in',['draft','sent','to approve'])]</field>
+      <field name="domain">[('valid_purchase', '=', False),('state','in',['draft','sent','to approve']),('id_active', '=', False)]</field>
     </record>
 
     <menuitem name="Compras por Validar" id="belenes.menu_purchase_to_valide" parent="purchase.menu_procurement_management"
