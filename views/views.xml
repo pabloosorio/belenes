@@ -19,7 +19,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='date_order']" position="after">
                 <field name="purchase_type"/>
-                <field name="valid_purchase"/>
+                <field name="valid_purchase" attrs="{'invisible': [('uid','not in',purchase_type.userss)]"/>
             </xpath>
         </field>
     </record>
@@ -46,13 +46,7 @@
             </group>
             <notebook>
               <page name="users_authorize" string="Usuarios que autorizan">
-                <field name="users" widget="one2many_list" default_order="option">
-                    <tree editable="bottom">
-                      <field name = 'name' />
-                      <field name = 'email' />
-                      <field name = 'company' />
-                    </tree>
-                  </field>
+                  <field name="userss" domain="[('valid_purchase','=',True)]"/>
               </page>
             </notebook>
           </sheet>
@@ -72,8 +66,9 @@
     <record model="ir.actions.act_window" id="belenes.purchase_to_valid_window">
       <field name="name">Compras pendientes por validar</field>
       <field name="res_model">purchase.order</field>
+      <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
-      <field name="domain">[('valid_purchase', '=', False)]</field>
+      <field name="domain">[('valid_purchase', '=', False),('state','in',['draft','sent','to approve'])]</field>
     </record>
 
     <menuitem name="Compras por Validar" id="belenes.menu_purchase_to_valide" parent="purchase.menu_procurement_management"
