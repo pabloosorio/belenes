@@ -19,7 +19,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='date_order']" position="after">
                 <field name="purchase_type"/>
-                <field name="valid_purchase" attrs="{'invisible': [('uid','not in',purchase_type.userss)]"/>
+                <field name="valid_purchase" attrs="{'invisible': [('uid','not in',purchase_type.userss)]}"/>
             </xpath>
         </field>
     </record>
